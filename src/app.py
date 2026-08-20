@@ -27,7 +27,15 @@ def books():
         }
     ])
 
+@app.route("/books/1")
+def book_one():
+    return jsonify({
+        "id": 1,
+        "title": "Python Basics",
+        "author": "John Doe"
+    })
 
+    
 if __name__ == "__main__":
     port = int(os.getenv("PORT", "8000"))
     app.run(host="0.0.0.0", port=port)
