@@ -1,4 +1,4 @@
-from flask import Flask, jsonify
+from flask import Flask, jsonify, request
 import os
 
 app = Flask(__name__)
@@ -60,6 +60,29 @@ def user_one():
         "name": "John Doe",
         "email": "john@example.com"
     })
+
+
+@app.route("/login", methods=["POST"])
+def login():
+    data = request.get_json()
+
+    if not data:
+        return jsonify({
+            "message": "Request body is required"
+        }), 400
+
+    email = data.get("email")
+    password = data.get("password")
+
+    if email == "john@example.com" and password == "password123":
+        return jsonify({
+            "message": "Login successful",
+            "user_id": 1
+        })
+
+    return jsonify({
+        "message": "Invalid email or password"
+    }), 401
 
 
 if __name__ == "__main__":
