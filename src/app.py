@@ -27,6 +27,7 @@ def books():
         }
     ])
 
+
 @app.route("/books/1")
 def book_one():
     return jsonify({
@@ -35,7 +36,32 @@ def book_one():
         "author": "John Doe"
     })
 
-    
+
+@app.route("/users")
+def users():
+    return jsonify([
+        {
+            "id": 1,
+            "name": "John Doe",
+            "email": "john@example.com"
+        },
+        {
+            "id": 2,
+            "name": "Jane Doe",
+            "email": "jane@example.com"
+        }
+    ])
+
+
+@app.route("/users/1")
+def user_one():
+    return jsonify({
+        "id": 1,
+        "name": "John Doe",
+        "email": "john@example.com"
+    })
+
+
 if __name__ == "__main__":
     port = int(os.getenv("PORT", "8000"))
     app.run(host="0.0.0.0", port=port)
